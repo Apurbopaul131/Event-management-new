@@ -21,6 +21,7 @@ const AddEvents = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm({ resolver: zodResolver(EventValidationSchema) });
   const onSubmit = async (data) => {
     const toastId = toast.loading("Creating event...", {
@@ -34,6 +35,13 @@ const AddEvents = () => {
         position: "top-center",
         style: { color: "green" },
       });
+      //reset the form after successful submission
+        reset({
+            title: "",
+            dateandTime: "",
+            location: "",
+            description: "",
+        });
     } catch (error) {
       toast.error(error?.response?.data?.message, {
         id: toastId,
