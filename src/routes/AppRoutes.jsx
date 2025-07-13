@@ -5,8 +5,8 @@ import Register from "../components/Register";
 import AddEvents from "../pages/AddEvents";
 import Events from "../pages/Events";
 import MyEvents from "../pages/MyEvents";
+import { getSpecificUserEvents as userEventsDataLoader } from "../services/EventApi";
 import PrivateRoute from "./PrivateRoute";
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +27,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "my-events",
-        element: <PrivateRoute><MyEvents /></PrivateRoute>,
+        element: <PrivateRoute><MyEvents/></PrivateRoute>,
+        loader: userEventsDataLoader
       },
     ],
   },
